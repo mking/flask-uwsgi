@@ -2,7 +2,10 @@ Flask with uWSGI + Nginx
 ===
 This tutorial shows you to set up a simple Flask app with uWSGI + Nginx.
 
-With this tutorial, uWSGI is wrapped in an Upstart service, and uWSGI's files (UNIX sockets, logs, config) are stored in standard Ubuntu locations (/var/run, /var/log, /etc). Note that each deployed app should have its own Upstart service (and related file locations).
+At the end of this tutorial, you will be able to do the following:
+
+- Start or stop the app using Upstart
+- Visit the app at http://flask-uwsgi.ubuntu.local. (Throughout this tutorial, replace ubuntu.local with your machine's name.) 
 
 Setting up the Python environment
 ---
@@ -16,12 +19,6 @@ Next, install the following Pip packages.
 
     sudo pip install virtualenv uwsgi 
 
-Note: Here is how I decide whether to install a package via system Pip or Virtualenv.
-
-- distro's binary package - never ([falls out of date too quickly](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html))
-- system Pip - system-level tools
-- Virtualenv - app-specific packages
-
 Next, create the Virtualenv for this tutorial.
 
     cd flask-uwsgi
@@ -33,7 +30,7 @@ Next, run the Flask app using uWSGI.
 
     uwsgi --http 0.0.0.0:8080 --home env --wsgi-file flask_uwsgi.py --callable app --master
 
-You should be able to visit http://ubuntu.local:8080. (Note: Throughout this tutorial, replace ubuntu.local with your machine's name.)
+You should be able to visit http://ubuntu.local:8080.
 
 Creating an Upstart service for uWSGI
 ---
