@@ -1,4 +1,4 @@
-Flask uWSGI
+Flask with uWSGI + Nginx
 ===
 This tutorial shows you to set up a simple Flask app with uWSGI + Nginx.
 
@@ -35,7 +35,7 @@ Next, run the Flask app using uWSGI.
 
     uwsgi --http 0.0.0.0:8080 --home env --wsgi-file flask_uwsgi.py --callable app --master
 
-You should be able to visit http://ubuntu.local:8080. (NOte: Throughout this tutorial, replace ubuntu.local with your machine's name.)
+You should be able to visit http://ubuntu.local:8080. (Note: Throughout this tutorial, replace ubuntu.local with your machine's name.)
 
 Creating an Upstart service for uWSGI
 ---
@@ -88,13 +88,15 @@ Next, enable the config.
     sudo ln -sf /etc/nginx/sites-available/flask-uwsgi /etc/nginx/sites-enabled
     sudo service nginx reload
 
-Next, check that the app is reachable through Nginx. Visit http://flask-uwsgi.ubuntu.local.
+Next, check that the app is reachable through Nginx. You should be able to visit http://flask-uwsgi.ubuntu.local.
 
-If you make a change to the app (or to the uWSGI config), reload uWSGI to pick up the changes.
+Congratulations! You have deployed an app to uWSGI + Nginx.
+
+Code reloading
+---
+You can reload code (or reload the uWSGI config) by sending the HUP signal to uWSGI.
 
     sudo service flask-uwsgi reload
-
-This sends the HUP signal to uWSGI.
 
 References
 ---
