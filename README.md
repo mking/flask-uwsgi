@@ -16,13 +16,11 @@ Next, install the following Pip packages.
 
     sudo pip install virtualenv uwsgi 
 
-I use the system Pip for non-app-specific tools, while I use Virtualenv for app-specific packages.
+Note: Here is how I decide whether to install a package via system Pip or Virtualenv.
 
-Where possible, I use the Pip version over the distro's binary version. There are a few reasons for this:
-
-- uWSGI recommends that you do not use the distro's binary package.
-- It is not a common practice to use the distro's binary package. You will find
-  less help in the wild for doing this.
+- distro's binary package - never (not commonly used, [falls out of date too quickly](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html))
+- system Pip - system-level tools
+- Virtualenv - app-specific packages
 
 Next, create the Virtualenv for this tutorial.
 
@@ -33,10 +31,11 @@ Next, create the Virtualenv for this tutorial.
 
     pip install flask
 
-Next, let's check that we can reach the Flask app. Run the Flask app using wsgi. 
+Next, run the Flask app using uWSGI.
+
     uwsgi --http 0.0.0.0:8080 --home env --wsgi-file flask_uwsgi.py --callable app --master
 
-Next, visit http://ubuntu.local:8080. (Throughout this tutorial, use your machine's domain name instead of ubuntu.local.) You should see "Hello from Flask!".
+You should be able to visit http://ubuntu.local:8080. (NOte: Throughout this tutorial, replace ubuntu.local with your machine's name.)
 
 Creating an Upstart service for uWSGI
 ---
@@ -67,7 +66,7 @@ Next, start uWSGI.
 
     sudo service flask-uwsgi start
 
-Next, let's check that uWSGI is running.
+Next, check that uWSGI is running.
 
     sudo less /var/log/flask-uwsgi/flask-uwsgi.log
 
