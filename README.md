@@ -18,17 +18,15 @@ Next, install the following Pip packages.
 
 Note: Here is how I decide whether to install a package via system Pip or Virtualenv.
 
-- distro's binary package - never (not commonly used, [falls out of date too quickly](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html))
+- distro's binary package - never ([falls out of date too quickly](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html))
 - system Pip - system-level tools
 - Virtualenv - app-specific packages
 
 Next, create the Virtualenv for this tutorial.
 
     cd flask-uwsgi
-    
     virtualenv env
     source env/bin/activate
-
     pip install flask
 
 Next, run the Flask app using uWSGI.
@@ -43,11 +41,11 @@ First, set up the directories the service will use.
 
     # Create a directory for the UNIX sockets
     sudo mkdir /var/run/flask-uwsgi
-    chown www-data:www-data /var/run/flask-uwsgi
+    sudo chown www-data:www-data /var/run/flask-uwsgi
 
     # Create a directory for the logs
     sudo mkdir /var/log/flask-uwsgi
-    chown www-data:www-data /var/log/flask-uwsgi
+    sudo chown www-data:www-data /var/log/flask-uwsgi
 
     # Create a directory for the configs
     sudo mkdir /etc/flask-uwsgi
