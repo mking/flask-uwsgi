@@ -93,6 +93,15 @@ You can reload code (or reload the uWSGI config) by sending the HUP signal to uW
 
     sudo service flask-uwsgi reload
 
+Adding or simulating DNS entries
+---
+If you are running this tutorial in a VM, you can simulate DNS names in the host by editing /etc/hosts. This allows you to visit your VM from your host's browser.
+
+    # Replace <IP> with your VM's IP. 
+    <IP> ubuntu.local flask-uwsgi.ubuntu.local
+
+To check this, visit http://ubuntu.local (or http://flask-uwsgi.ubuntu.local) in your host's browser.
+
 References
 ---
 - [uWSGI Quickstart](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html)
